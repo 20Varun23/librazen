@@ -84,9 +84,6 @@ function App() {
           </div>
         </div>
       </nav>
-
-      {/* Footer */}
-      <Footer />
     </>
   );
 }
