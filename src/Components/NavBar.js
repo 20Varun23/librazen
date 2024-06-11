@@ -39,11 +39,6 @@ const NavBar = () => {
                 LeaderBoard
               </a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">
-                Analytics
-              </a>
-            </li>
           </ul>
           <span className="d-flex">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">

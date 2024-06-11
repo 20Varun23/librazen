@@ -21,6 +21,54 @@ const HeroComponent = () => {
           information and adventure, right at your fingertips.
         </p>
       </div>
+      <div className="container text-center" id="GenereList">
+        <div className="row align-items-center">
+          <div className="col" style={{ margin: "0.5em" }}>
+            The genre of books we have
+          </div>
+        </div>
+        <div className="row align-items-start">
+          <div className="col" style={{ margin: "0.25em" }}>
+            <ul class="list-group">
+              <li className="list-group-item list-group-item-info">
+                <u>Fiction</u>
+              </li>
+              <li className={"list-group-item list-group-item-info"}>
+                Contemporary Fiction
+              </li>
+              <li className="list-group-item list-group-item-info">
+                Historical Fiction
+              </li>
+              <li className="list-group-item list-group-item-info">
+                Literary Fiction
+              </li>
+              <li className="list-group-item list-group-item-info">Mystery</li>
+            </ul>
+          </div>
+          <div className="col" style={{ margin: "0.25em" }}>
+            <ul class="list-group">
+              <li className="list-group-item list-group-item-info">
+                <u>Non-Fiction</u>
+              </li>
+              <li className="list-group-item list-group-item-info">
+                Biography
+              </li>
+              <li className="list-group-item list-group-item-info">Memoir</li>
+              <li className="list-group-item list-group-item-info">
+                Self-Help
+              </li>
+              <li className="list-group-item list-group-item-info">
+                Health & Wellness
+              </li>
+            </ul>
+          </div>
+          <div className="row align-items-center">
+            <div className="col" style={{ margin: "0.5em" }}>
+              And much more...
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
