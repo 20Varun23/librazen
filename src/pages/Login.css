@@ -1,0 +1,12 @@
+#LoginDiv {
+  margin: 0 auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  min-width: 300px;
+  width: 30%;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}

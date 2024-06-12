@@ -3,11 +3,9 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer>
-      <div className="container">
-        <p className="text-center">Thanks for using</p>
-      </div>
-    </footer>
+    <div class="footer">
+      <p className="text-center">Thanks for using</p>
+    </div>
   );
 };
 
