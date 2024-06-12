@@ -6,7 +6,7 @@ function Login() {
     <div id="loginMainDiv">
       <h1 id="Main_heading">Login</h1>
       <div id="LoginDiv">
-        <form action="submit">
+        <form action="Error">
           <label
             htmlFor="IDInput"
             className="form-label"
@@ -48,8 +48,8 @@ function Login() {
           />
           <br />
           <div className="center">
-            <button type="submit" class="btn btn-primary" href="/profile">
-              Primary
+            <button type="submit" class="btn btn-primary" href="/Error">
+              Login
             </button>
           </div>
         </form>
