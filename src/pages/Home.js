@@ -1,6 +1,5 @@
 import React from "react";
 import "./Home.css";
-import NavBar from "../Components/NavBar";
 import HeroComponent from "../Components/HeroComponent";
 
 function Home() {
