@@ -5,11 +5,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
+import ParticlesComponent from "./Components/Particle";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
+      <ParticlesComponent id="particles" />
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
