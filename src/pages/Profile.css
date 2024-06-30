@@ -1,0 +1,19 @@
+.mainText {
+  color: #8ecae6;
+  font-size: 1.25em;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.main {
+  text-align: center;
+}
+
+#ProfileDiv {
+  margin: 0 auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  min-width: 500px;
+  width: 700%;
+  text-align: center;
+}
