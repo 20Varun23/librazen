@@ -74,7 +74,7 @@ const ParticlesComponent = () => {
             default: "out",
           },
           random: false,
-          speed: 6,
+          speed: 4,
           straight: true,
         },
         number: {

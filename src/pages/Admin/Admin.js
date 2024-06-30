@@ -1,11 +1,10 @@
-import "./Login.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Admin() {
+  const navigate = useNavigate();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const changeId = (event) => {
     setId(event.target.value);
@@ -15,16 +14,15 @@ function Login() {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate(`/Profile/${id}/${password}`);
+  const handleSubmit = () => {
+    navigate(`/Admin/${id}/${password}`);
   };
 
   return (
-    <div id="loginMainDiv">
-      <h1 id="Main_heading">Login</h1>
+    <>
+      <h1 id="Main_heading">Admin Portal</h1>
       <div id="LoginDiv">
-        <form onSubmit={handleSubmit}>
+        <form type="submit" onSubmit={handleSubmit}>
           <label
             htmlFor="IDInput"
             className="form-label"
@@ -74,8 +72,8 @@ function Login() {
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 }
 
-export default Login;
+export default Admin;
