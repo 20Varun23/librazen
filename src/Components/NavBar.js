@@ -8,7 +8,7 @@ const NavBar = () => {
       style={{ backgroundColor: "#fb8500" }}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="home">
+        <a className="navbar-brand" href="/Home">
           Librazen
         </a>
         <button
@@ -30,7 +30,7 @@ const NavBar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/Error">
+              <a className="nav-link" href="/BookList">
                 View Books
               </a>
             </li>
@@ -48,7 +48,12 @@ const NavBar = () => {
                 </a>
               </li>
               <li>
-                <a className="nav-link" href="/Error">
+                <a className="nav-link" href="/Admin">
+                  Admin Portal
+                </a>
+              </li>
+              <li>
+                <a className="nav-link" href="/Register">
                   Register
                 </a>
               </li>
