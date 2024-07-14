@@ -24,6 +24,7 @@ function BookCard(prop) {
       <div className="card-body">
         <h4 className="card-title">{prop.name}</h4>
         <h6>{prop.author}</h6>
+        <h6>{prop.genre}</h6>
         <p className="card-text">{prop.info}</p>
         <a onClick={handleSubmit} className="btn btn-primary">
           {prop.i}

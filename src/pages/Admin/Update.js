@@ -71,6 +71,22 @@ function Update() {
     }
   };
 
+  const genre = async () => {
+    const { data, error } = await supabase
+      .from("Books")
+      .select()
+      .ilike("genre", ent);
+
+    if (error) {
+      setFetchError(null);
+      setBook(null);
+    }
+    if (data) {
+      setFetchError(null);
+      setBook(data);
+    }
+  };
+
   const cancel = async () => {
     setEnt("");
     const { data, error } = await supabase.from("Books").select();
@@ -84,6 +100,7 @@ function Update() {
       setFetchError(null);
     }
   };
+
   return (
     <div>
       {fetchError && <p>{fetchError}</p>}
@@ -115,17 +132,22 @@ function Update() {
                   Book Title
                 </a>
               </li>
+              <li>
+                <a className="dropdown-item" onClick={genre}>
+                  Genre
+                </a>
+              </li>
             </ul>
             <input
               type="text"
               class="form-control"
               value={ent}
-              placeholder="Enter the author or title of the book"
+              placeholder="Enter the author/title/genre of the book"
               aria-label="Text input with dropdown button"
               onChange={changeEnt}
             />
           </div>
-          <div style={{ display: "flex" }}>
+          <div className="container">
             {book.map((book) => (
               <BookCard
                 name={book.name}
@@ -133,6 +155,7 @@ function Update() {
                 info={book.info}
                 site={h(book.id)}
                 i="Update"
+                genre={book.genre}
               />
             ))}
           </div>

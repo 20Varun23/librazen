@@ -67,6 +67,11 @@ function ReturnPage() {
       return;
     }
 
+    if (book.is_overdue) {
+      alert("This book is overdue");
+      return;
+    }
+
     navigate(`/Profile/${id}/${password}`);
     let r = new Date(book.return_date);
     let s = new Date(r);
@@ -131,9 +136,24 @@ function ReturnPage() {
                   n.push(student.borrowed[i]);
                 }
               }
+
+              let points = student.reading_points;
+              if (!book.is_overdue) {
+                if (!book.can_reissue) {
+                  points += 5;
+                } else {
+                  points += 10;
+                }
+              }
+
               const { errorb } = await supabase
                 .from("Student")
-                .update({ borrowed: n, return_date: l, given: g })
+                .update({
+                  borrowed: n,
+                  return_date: l,
+                  given: g,
+                  reading_points: points,
+                })
                 .eq("id", id)
                 .select();
 
@@ -145,6 +165,7 @@ function ReturnPage() {
                   owener_id: null,
                   return_date: null,
                   can_reissue: null,
+                  is_overdue: null,
                 })
                 .eq("id", book_id)
                 .select();

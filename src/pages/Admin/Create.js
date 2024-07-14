@@ -10,6 +10,7 @@ function Create() {
   const [authorB, setAuthorB] = useState(null);
   const [infoB, setInfoB] = useState(null);
   const [editionB, setEditionB] = useState(null);
+  const [genre, setGenre] = useState(null);
 
   const changeName = (event) => {
     setNameB(event.target.value);
@@ -27,12 +28,17 @@ function Create() {
     setInfoB(event.target.value);
   };
 
+  const changeGenre = (event) => {
+    setGenre(event.target.value);
+  };
+
   const handleSubmit = async () => {
     if (
       editionB == null ||
       infoB == null ||
       authorB == null ||
-      editionB == null
+      editionB == null ||
+      genre == null
     ) {
       alert("Input all fields");
       return;
@@ -50,6 +56,7 @@ function Create() {
           info: infoB,
           edition: editionB,
           check_in: d,
+          genre: genre,
         },
       ])
       .select();
@@ -144,6 +151,31 @@ function Create() {
             value={infoB}
             onChange={changeInfo}
           />
+          <br />
+          <label
+            htmlFor="genre"
+            className="form-label"
+            style={{
+              color: "#8ecae6",
+              fontSize: "1.25em",
+              textAlign: "justify",
+              fontFamily: "Times New Roman",
+            }}
+          >
+            Info
+          </label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            name="genre"
+            onChange={changeGenre}
+            value={genre}
+          >
+            <option selected>Open this select menu</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Self Help">Self Help</option>
+            <option value="Non fiction">Non Fiction</option>
+          </select>
           <br />
           <button className="btn btn-primary">Add book</button>
           <form onSubmit={goBack}>

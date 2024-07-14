@@ -13,6 +13,7 @@ function IssueBook() {
   const d = new Date();
   const r = new Date(d);
   r.setDate(d.getDate() + 14);
+  const x = d.getMonth();
 
   useEffect(() => {
     const fetchBook = async () => {
@@ -55,9 +56,15 @@ function IssueBook() {
   }, []);
 
   const IssueB = async () => {
+    let points = book.popular_points;
     const { datab, errorb } = await supabase
       .from("Books")
-      .update({ owener_id: id, return_date: r, can_reissue: true })
+      .update({
+        owener_id: id,
+        return_date: r,
+        can_reissue: true,
+        popular_points: points + 1,
+      })
       .eq("id", book_id)
       .select();
   };
@@ -86,9 +93,18 @@ function IssueBook() {
     }
     m.unshift(r);
 
+    let months = [];
+    student.month_books.map((month, index) => {
+      if (index == x) {
+        months.push(month + 1);
+      } else {
+        months.push(month);
+      }
+    });
+
     const { errors } = await supabase
       .from("Student")
-      .update({ borrowed: n, return_date: m })
+      .update({ borrowed: n, return_date: m, month_books: months })
       .eq("id", id)
       .select();
 

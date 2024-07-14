@@ -90,7 +90,7 @@ function UpdateBook() {
       {fetchError && <p>{fetchError}</p>}
       {book && (
         <>
-          <h1 id="Main_Heading">Enter the new entry</h1>
+          <h1 id="Main_Heading">Update data</h1>
           <div id="LoginDiv">
             <form type="submit" onSubmit={handleSubmit}>
               <label

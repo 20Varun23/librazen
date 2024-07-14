@@ -4,6 +4,9 @@ import supabase from "./L";
 import { useEffect, useState } from "react";
 // import "./Profile.css";
 import BookCard from "../Components/BookCard";
+import { Chart as CharJS } from "chart.js/auto";
+import { Line } from "react-chartjs-2";
+import { useLoaderData } from "react-router-dom";
 
 function Profile() {
   const navigate = useNavigate();
@@ -82,6 +85,14 @@ function Profile() {
     navigate(`/Login`);
   };
 
+  const handleUpdateP = () => {
+    navigate(`/Profile/${id}/${password}/UpdateProfile`);
+  };
+
+  const handleUpdatePass = () => {
+    navigate(`/Profile/${id}/${password}/PasswordChange`);
+  };
+
   return (
     <div>
       {fetchError && <p>{fetchError}</p>}
@@ -107,6 +118,7 @@ function Profile() {
                   i="Return or reissue"
                 />
               ))}
+              <br />
             </div>
             {/* <p className="mainText" style={{ textAlign: "center" }}>
               last three books given : {student.given[0]} ,{student.given[1]} ,{" "}
@@ -119,6 +131,59 @@ function Profile() {
             <p className="mainText" style={{ textAlign: "center" }}>
               Reading score : {student.reading_points}
             </p>
+            <div className="container" style={{ backgroundColor: "#8ecae612" }}>
+              <Line
+                data={{
+                  labels: [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December",
+                  ],
+                  datasets: [
+                    {
+                      label: "Books Read",
+                      data: student.month_books,
+                      fill: false,
+                      borderColor: "#8ecae6",
+                      tension: 0.1,
+                    },
+                    {
+                      label: "Overdues each month",
+                      data: student.overdue_month,
+                      fill: false,
+                      borderColor: "#fb8500",
+                      tension: 0.1,
+                    },
+                  ],
+                }}
+                options={{
+                  scales: {
+                    y: {
+                      min: 0,
+                      ticks: {
+                        color: "white",
+                        stepSize: 1, // Ensures ticks are placed at intervals of 2
+                      },
+                    },
+                    x: {
+                      ticks: {
+                        color: "white",
+                      },
+                    },
+                  },
+                }}
+              />
+            </div>
+            <br />
             <form onSubmit={handleSubmit}>
               <button
                 id="books"
@@ -136,7 +201,22 @@ function Profile() {
                 Cancel
               </button>
             </form>
-            <br />
+            <form onSubmit={handleUpdateP}>
+              <button
+                className="btn btn-primary"
+                style={{ margin: "1em auto", display: "block" }}
+              >
+                Update Profile
+              </button>
+            </form>
+            <form onSubmit={handleUpdatePass}>
+              <button
+                className="btn btn-primary"
+                style={{ margin: "1em auto", display: "block" }}
+              >
+                Reset Password
+              </button>
+            </form>
           </div>
         </>
       )}

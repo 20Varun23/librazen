@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
 import supabase from "../L";
 import { useEffect, useState } from "react";
+import PassChange from "./PassChange";
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -41,6 +42,10 @@ function AdminPage() {
 
   const handleUpdate = () => {
     navigate(`/Admin/${id}/${password}/Update`);
+  };
+
+  const changePassword = () => {
+    navigate(`/Admin/${id}/${password}/PassChange`);
   };
 
   return (
@@ -84,6 +89,15 @@ function AdminPage() {
               style={{ margin: "0 auto", display: "block" }}
             >
               Delete
+            </button>
+          </form>
+          <hr style={{ color: "#fb8500" }} />
+          <form action="submit" onSubmit={changePassword}>
+            <button
+              className="btn btn-primary"
+              style={{ margin: "0 auto", display: "block" }}
+            >
+              Reset password
             </button>
           </form>
         </>

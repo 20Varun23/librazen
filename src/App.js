@@ -1,13 +1,17 @@
 import "./App.css";
 import NavBar from "./Components/NavBar";
 import Footer from "./Components/Footer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  useLoaderData,
+} from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import Error from "./pages/Error";
+import About from "./pages/About";
 import ParticlesComponent from "./Components/Particle";
 import Profile from "./pages/Profile";
-import React from "react";
+import React, { useState } from "react";
 import TakeBooks from "./pages/TakeBooks";
 import IssueBook from "./pages/IssueBook";
 import Admin from "./pages/Admin/Admin";
@@ -20,52 +24,116 @@ import DeleteBook from "./pages/Admin/DeleteBook";
 import ReturnPage from "./pages/ReturnPage";
 import Register from "./pages/Register";
 import BookList from "./pages/BookList";
+import LeaderBoard from "./pages/LeaderBoard";
+import { useEffect } from "react";
+import { HashLoader } from "react-spinners";
+import supabase from "./pages/L";
+import UpdateProfile from "./pages/UpdateProfile";
+import PasswordChange from "./pages/PasswordChange";
+import PassChange from "./pages/Admin/PassChange";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/home",
+    element: <Home />,
+  },
+  {
+    path: "/About",
+    element: <About />,
+  },
+  {
+    path: "/Profile/:id/:password",
+    element: <Profile />,
+  },
+  {
+    path: "/Profile/:id/:password/BooksSearch",
+    element: <TakeBooks />,
+  },
+  {
+    path: "/Profile/:id/:password/:book_id/Issue",
+    element: <IssueBook />,
+  },
+  {
+    path: "/Profile/:id/:password/:book_id/Return",
+    element: <ReturnPage />,
+  },
+  {
+    path: "/Admin",
+    element: <Admin />,
+  },
+  {
+    path: "/Admin/:id/:password",
+    element: <AdminPage />,
+  },
+  {
+    path: "/Admin/:id/:password/Create",
+    element: <Create />,
+  },
+  {
+    path: "/Admin/:id/:password/Delete",
+    element: <Delete />,
+  },
+  {
+    path: "/Admin/:id/:password/Update",
+    element: <Update />,
+  },
+  {
+    path: "/Admin/:id/:password/:book_id/Update",
+    element: <UpdateBook />,
+  },
+  {
+    path: "/Admin/:id/:password/:book_id/Delete",
+    element: <DeleteBook />,
+  },
+  {
+    path: "/Register",
+    element: <Register />,
+  },
+  {
+    path: "/BookList",
+    element: <BookList />,
+  },
+  {
+    path: "/LeaderBoard",
+    element: <LeaderBoard />,
+  },
+  { path: "/Profile/:id/:password/UpdateProfile", element: <UpdateProfile /> },
+  {
+    path: "/Profile/:id/:password/PasswordChange",
+    element: <PasswordChange />,
+  },
+  {
+    path: "/Admin/:id/:password/PassChange",
+    element: <PassChange />,
+  },
+]);
 
 function App() {
+  const [loading, setLoading] = useState(false);
   return (
     <div className="App">
+      <div id="background"></div>
       <NavBar />
       <ParticlesComponent id="particles" />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/Error" element={<Error />} />
-          <Route path="/Profile/:id/:password" element={<Profile />} />
-          <Route
-            path="/Profile/:id/:password/BooksSearch"
-            element={<TakeBooks />}
-          />
-          <Route
-            path="/Profile/:id/:password/:book_id/Issue"
-            element={<IssueBook />}
-          />
-          <Route path="/Admin" element={<Admin />} />
-          <Route path="/Admin/:id/:password" element={<AdminPage />} />
-          <Route path="/Admin/:id/:password/Create" element={<Create />} />
-          <Route path="/Admin/:id/:password/Delete" element={<Delete />} />
-          <Route path="/Admin/:id/:password/Update" element={<Update />} />
-          <Route
-            path="/Admin/:id/:password/:book_id/Update"
-            element={<UpdateBook />}
-          />
-          <Route
-            path="/Admin/:id/:password/:book_id/Delete"
-            element={<DeleteBook />}
-          />
-          <Route
-            path="/Profile/:id/:password/:book_id/Return"
-            element={<ReturnPage />}
-          />
-          <Route path="/Register" element={<Register />} />
-          <Route path="/BookList" element={<BookList />} />
-        </Routes>
-      </BrowserRouter>
-
+      {loading ? (
+        <HashLoader size={100} color="#fb8500" loading={loading} id="loader" />
+      ) : (
+        <>
+          <React.StrictMode>
+            <RouterProvider router={router} />
+          </React.StrictMode>
+        </>
+      )}
       <Footer />
     </div>
   );
 }
-
 export default App;
