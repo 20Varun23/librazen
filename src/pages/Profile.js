@@ -29,6 +29,7 @@ function Profile() {
         setFetchError("Could not fetch the student");
         setStudent(null);
         alert("Password or/and id wrong");
+        navigate(`/Login`);
       }
       if (data) {
         setStudent(data);
