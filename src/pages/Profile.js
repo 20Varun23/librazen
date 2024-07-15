@@ -121,10 +121,6 @@ function Profile() {
               ))}
               <br />
             </div>
-            {/* <p className="mainText" style={{ textAlign: "center" }}>
-              last three books given : {student.given[0]} ,{student.given[1]} ,{" "}
-              {student.given[2]}
-            </p> */}
 
             <p className="mainText" style={{ textAlign: "center" }}>
               amount left to be paid : Rs. {student.late_fine}

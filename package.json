@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-email/components": "^0.0.21",
     "@supabase/supabase-js": "^2.43.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -20,7 +19,6 @@
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.14.1",
-    "resend": "^3.4.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

@@ -47,14 +47,6 @@ function ReturnPage() {
       }
     };
 
-    // const can_reissue = (dataB) => {
-    //   if (dataB.can_reissue === false) {
-    //     setTimeout(() => {
-    //       document.querySelector("#dis").disabled = true;
-    //     }, 100);
-    //   }
-    // };
-
     fetchBook();
     fetchStudent();
   });
@@ -63,7 +55,6 @@ function ReturnPage() {
     event.preventDefault();
     if (book.can_reissue == false) {
       alert("You have already reissued the book ounce");
-      navigate(`/Profile/${id}/${password}`);
       return;
     }
 
@@ -87,11 +78,11 @@ function ReturnPage() {
       .select();
 
     let n = [];
-    for (let i of student.return_date) {
-      if (s == i) {
+    for (let i = 0; i < student.return_date.length; i++) {
+      if (s == student.return_date[i]) {
         n.push(r);
       } else {
-        n.push(i);
+        n.push(student.return_date[i]);
       }
     }
 
@@ -102,6 +93,53 @@ function ReturnPage() {
       })
       .eq("id", book_id)
       .select();
+  };
+
+  const handleReturn = async () => {
+    let n = [];
+    let l = [];
+    for (let i = 0; i < student.borrowed.length; i++) {
+      if (book.id !== student.borrowed[i]) {
+        l.push(student.return_date[i]);
+        n.push(student.borrowed[i]);
+      }
+    }
+
+    let points = student.reading_points;
+    if (!book.is_overdue) {
+      if (!book.can_reissue) {
+        points += 5;
+      } else {
+        points += 10;
+      }
+    }
+
+    const { errorb } = await supabase
+      .from("Student")
+      .update({
+        borrowed: n,
+        return_date: l,
+        reading_points: points,
+      })
+      .eq("id", id)
+      .select();
+
+    console.log(errorb);
+
+    const { errora } = await supabase
+      .from("Books")
+      .update({
+        owener_id: null,
+        return_date: null,
+        can_reissue: null,
+        is_overdue: null,
+      })
+      .eq("id", book_id)
+      .select();
+
+    alert("Return the book tommorow at the front desk");
+    navigate(`/Profile/${id}/${password}`);
+    console.log(errora);
   };
 
   return (
@@ -119,61 +157,7 @@ function ReturnPage() {
             id="issue"
             className="btn btn-primary"
             style={{ margin: "0 auto", display: "block" }}
-            onClick={async () => {
-              let g = [];
-
-              for (let i of student.given) {
-                g.push(i);
-              }
-
-              g.push(book_id);
-
-              let n = [];
-              let l = [];
-              for (let i = 0; i < student.borrowed.length; i++) {
-                if (book.id !== student.borrowed[i]) {
-                  l.push(student.return_date[i]);
-                  n.push(student.borrowed[i]);
-                }
-              }
-
-              let points = student.reading_points;
-              if (!book.is_overdue) {
-                if (!book.can_reissue) {
-                  points += 5;
-                } else {
-                  points += 10;
-                }
-              }
-
-              const { errorb } = await supabase
-                .from("Student")
-                .update({
-                  borrowed: n,
-                  return_date: l,
-                  given: g,
-                  reading_points: points,
-                })
-                .eq("id", id)
-                .select();
-
-              console.log(errorb);
-
-              const { errora } = await supabase
-                .from("Books")
-                .update({
-                  owener_id: null,
-                  return_date: null,
-                  can_reissue: null,
-                  is_overdue: null,
-                })
-                .eq("id", book_id)
-                .select();
-
-              alert("Return the book tommorow at the front desk");
-              navigate(`/Profile/${id}/${password}`);
-              console.log(errora);
-            }}
+            onClick={handleReturn}
           >
             Return
           </button>

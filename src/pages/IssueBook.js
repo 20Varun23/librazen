@@ -64,6 +64,7 @@ function IssueBook() {
         return_date: r,
         can_reissue: true,
         popular_points: points + 1,
+        is_overdue: false,
       })
       .eq("id", book_id)
       .select();
