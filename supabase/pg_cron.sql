@@ -31,5 +31,5 @@ BEGIN
 END;
 $$;
 
-SELECT cron.schedule('check_overdue_books','25 18 * * *', 
+SELECT cron.schedule('check_overdue_books','30 18 * * *', 
 $$ select update_overdue_months(); $$);
