@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import supabase from "../../supabase/L";
+import supabase from "./L";
 import { useEffect, useState } from "react";
 
 function UpdateProfile() {

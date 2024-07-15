@@ -1,5 +1,5 @@
 import React from "react";
-import supabase from "../../supabase/L";
+import supabase from "./L";
 import { useEffect, useState } from "react";
 import * as d3 from "d3";
 import "./LeaderBoard.css";

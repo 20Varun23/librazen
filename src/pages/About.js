@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
-import supabase from "../../supabase/L";
+import supabase from "./L";
 import { useEffect, useState } from "react";
 import { Chart as CharJS } from "chart.js/auto";
 import { Bar, Doughnut } from "react-chartjs-2";
