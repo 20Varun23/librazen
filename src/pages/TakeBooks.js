@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
-import supabase from "./L";
+import supabase from "../../supabase/L";
 import { useEffect, useState } from "react";
 import "./TakeBooks.css";
 import BookCard from "../Components/BookCard";
