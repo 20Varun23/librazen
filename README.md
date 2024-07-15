@@ -21,4 +21,9 @@ This project aims to produce react app imitating the working of a Library Manage
 ### Supabase:
 
 1. Incorporates Supabase for the storing of the data of students, books and admins.
-2.
+2. Use the pg_cron function for scheduling functions regarding keeping track of overdues
+
+### Other features
+
+1. Uses Chart.js and d3.js for visualization and sorting
+2. Uses Particle.js for the background.
